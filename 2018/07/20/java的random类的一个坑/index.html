@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?533310469d712b44a97c2f699fcb1750"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>java的random类的一个坑（集合乱序） | JUST DO IT | 52it.party</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="java,问题解决">
+    <meta name="description" content="引言在最近的开发中，要实现一个把一个集合的数给弄成乱序的，脑子里边的第一个想法就是使用随机数，先新建一个集合，写个死循环，然后获取随机位置下标，然后判断新集合是否包含这个数，不包含就把这个数加入新集合，包含，就继续下次循环，一直到新集合的长度达到和原始数组一样的长度为止，代码如下： 123456789101112131415161718public List&amp;lt;String&amp;gt; rando">
+<meta name="keywords" content="java,问题解决">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java的random类的一个坑（集合乱序）">
+<meta property="og:url" content="https://52it.party/2018/07/20/java的random类的一个坑/index.html">
+<meta property="og:site_name" content="JUST DO IT">
+<meta property="og:description" content="引言在最近的开发中，要实现一个把一个集合的数给弄成乱序的，脑子里边的第一个想法就是使用随机数，先新建一个集合，写个死循环，然后获取随机位置下标，然后判断新集合是否包含这个数，不包含就把这个数加入新集合，包含，就继续下次循环，一直到新集合的长度达到和原始数组一样的长度为止，代码如下： 123456789101112131415161718public List&amp;lt;String&amp;gt; rando">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-20T09:06:06.161Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java的random类的一个坑（集合乱序）">
+<meta name="twitter:description" content="引言在最近的开发中，要实现一个把一个集合的数给弄成乱序的，脑子里边的第一个想法就是使用随机数，先新建一个集合，写个死循环，然后获取随机位置下标，然后判断新集合是否包含这个数，不包含就把这个数加入新集合，包含，就继续下次循环，一直到新集合的长度达到和原始数组一样的长度为止，代码如下： 123456789101112131415161718public List&amp;lt;String&amp;gt; rando">
+    
+        <link rel="alternate" type="application/atom+xml" title="JUST DO IT" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Jerry Wang</h5>
+          <a href="mailto:wypeng2012@163.com" title="wypeng2012@163.com" class="mail">wypeng2012@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/wypeng2012" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/wypeng2010" target="_blank" >
+                <i class="icon icon-lg icon-pencil"></i>
+                CSDN
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">java的random类的一个坑（集合乱序）</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">java的random类的一个坑（集合乱序）</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-07-20T08:30:56.000Z" itemprop="datePublished" class="page-time">
+  2018-07-20
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/问题解决/">问题解决</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#解决方案"><span class="post-toc-number">1.</span> <span class="post-toc-text">解决方案</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-java的random类的一个坑"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">java的random类的一个坑（集合乱序）</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-07-20 16:30:56" datetime="2018-07-20T08:30:56.000Z"  itemprop="datePublished">2018-07-20</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/问题解决/">问题解决</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>引言</strong><br>在最近的开发中，要实现一个把一个集合的数给弄成乱序的，脑子里边的第一个想法就是使用随机数，先新建一个集合，写个死循环，然后获取随机位置下标，然后判断新集合是否包含这个数，不包含就把这个数加入新集合，包含，就继续下次循环，一直到新集合的长度达到和原始数组一样的长度为止，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">randomList</span><span class="params">(List&lt;String&gt; words)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (words == <span class="keyword">null</span>)</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">       List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       Random random = <span class="keyword">new</span> Random();</span><br><span class="line">       <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">           <span class="keyword">int</span> i = random.nextInt(words.size());</span><br><span class="line">           <span class="comment">// LogUtils.d("random:" + i);</span></span><br><span class="line">           String s = words.get(i);</span><br><span class="line">           <span class="keyword">if</span> (list.size() == words.size())</span><br><span class="line">               <span class="keyword">return</span> list;</span><br><span class="line">           <span class="keyword">if</span> (list.contains(s))</span><br><span class="line">               <span class="keyword">continue</span>;</span><br><span class="line">           <span class="keyword">else</span></span><br><span class="line">               list.add(s);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>这段大吗是没啥问题，刚开始也是，运行的很好，但是过了一段时间之后，发现有的手机会出问题：<strong>这个死循环不会结束</strong></p>
+<p>后来经过调试，发现，有时候随机数会出现某一个数，一直随机不出不来<br>，后来查阅文档发现，Random的nextInt(int n)方法有可能会出现问题：</p>
+<blockquote>
+<p>该算法稍微有些复杂。它拒绝那些会导致不均匀分布的值（由于 2^31 无法被 n 整除）。某个值被拒绝的概率取决于 n。最坏的情况是 n=2^30+1，拒绝的概率是 1/2，循环终止前的预计迭代次数是 2。</p>
+</blockquote>
+<p>这是倒霉催的遇上被拒绝的值了，所以应该不能一直nextInt(int n)同一个范围的值。</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>使用JDK自带的方法，Collections的shuffle方法，他的实现方式是：</p>
+<blockquote>
+<p>public static void shuffle(List&lt;?&gt; list)</p>
+<p>使用默认随机源对指&gt; 定列表进行置换。所有置换发生的可能性都是大致相等的。<br>前面描述中使用了不确定的词“大致”，因为随机源只是大致上独立选择位&gt; 的无偏源。如果它是一个随机选择位的最佳源，那么算法将完全一致的选&gt; 择置换。</p>
+</blockquote>
+<blockquote>
+<p>此实现向后遍历列表，从最后一个元素一直到第二个元素，将随机选择的&gt; 元素重复交换到“当前位置”。元素是从列表的一部分随机选择的，该部分&gt; 列表从第一个元素一直到当前位置（包括）。</p>
+</blockquote>
+<blockquote>
+<p>此方法以线性时间运行。如果指定列表没有实现 RandomAccess 接口并&gt; 且是一个大型列表，则此实现在改组列表前将指定列表转储到数组中，并&gt; 将改组后的数组转储回列表中。这避免了二次行为，该行为是原地改组一&gt; 个“有序访问”列表引起的。 </p>
+</blockquote>
+<p>源码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">shuffle</span><span class="params">(List&lt;?&gt; list, Random rnd)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> size = list.size();</span><br><span class="line">        <span class="keyword">if</span> (size &lt; SHUFFLE_THRESHOLD || list <span class="keyword">instanceof</span> RandomAccess) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i=size; i&gt;<span class="number">1</span>; i--)</span><br><span class="line">                swap(list, i-<span class="number">1</span>, rnd.nextInt(i));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            Object arr[] = list.toArray();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Shuffle array</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i=size; i&gt;<span class="number">1</span>; i--)</span><br><span class="line">                swap(arr, i-<span class="number">1</span>, rnd.nextInt(i));</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Dump array back into list</span></span><br><span class="line">            <span class="comment">// instead of using a raw type here, it's possible to capture</span></span><br><span class="line">            <span class="comment">// the wildcard but it will require a call to a supplementary</span></span><br><span class="line">            <span class="comment">// private method</span></span><br><span class="line">            ListIterator it = list.listIterator();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;arr.length; i++) &#123;</span><br><span class="line">                it.next();</span><br><span class="line">                it.set(arr[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>可以看出，它每次nextInt（）的随机源是不一样的，所以很好的解决了我碰到的那个问题</p>
+</blockquote>
+<p>修改后的方法代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">randomList</span><span class="params">(List&lt;String&gt; words)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">if</span> (words == <span class="keyword">null</span>)</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">     List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">     list.addAll(words);</span><br><span class="line">     Collections.shuffle(list);</span><br><span class="line">     <span class="keyword">return</span> list;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-07-20T09:06:06.161Z" itemprop="dateUpdated">2018-07-20 17:06:06</time>
+</span><br>
+
+
+        
+        版权所有，转载请注明出处：<a href="/2018/07/20/java的random类的一个坑/" target="_blank" rel="external">https://52it.party/2018/07/20/java的random类的一个坑/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://52it.party">
+            <img src="/img/avatar.jpg" alt="Jerry Wang">
+            Jerry Wang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/问题解决/">问题解决</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://52it.party/2018/07/20/java的random类的一个坑/&title=《java的random类的一个坑（集合乱序）》 — JUST DO IT&pic=https://52it.party/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://52it.party/2018/07/20/java的random类的一个坑/&title=《java的random类的一个坑（集合乱序）》 — JUST DO IT&source=一个爱好it的开源站点" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://52it.party/2018/07/20/java的random类的一个坑/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《java的random类的一个坑（集合乱序）》 — JUST DO IT&url=https://52it.party/2018/07/20/java的random类的一个坑/&via=https://52it.party" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://52it.party/2018/07/20/java的random类的一个坑/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/07/24/区块链大数计算之java的BigDecimal类使用解析/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">区块链大数计算之java的BigDecimal类使用解析</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/07/19/区块链开发之eth转账所需的gas，gasprice，gaslimit介绍/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">区块链开发之eth转账所需的gas，gasprice，gaslimit介绍</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "OSeFve2phrScTi5DslUdmkR7-gzGzoHsz",
+            appKey: "YeAn5rF0OVsDSmiuY3D9pqaI",
+            avatar: "wavatar",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        您的支持，是我不断前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/WeChatPay.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/WeChatPay.png" data-alipay="/img/AliPay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Jerry Wang &copy; 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://52it.party/2018/07/20/java的random类的一个坑/&title=《java的random类的一个坑（集合乱序）》 — JUST DO IT&pic=https://52it.party/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://52it.party/2018/07/20/java的random类的一个坑/&title=《java的random类的一个坑（集合乱序）》 — JUST DO IT&source=一个爱好it的开源站点" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://52it.party/2018/07/20/java的random类的一个坑/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《java的random类的一个坑（集合乱序）》 — JUST DO IT&url=https://52it.party/2018/07/20/java的random类的一个坑/&via=https://52it.party" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://52it.party/2018/07/20/java的random类的一个坑/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://52it.party/2018/07/20/java的random类的一个坑/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1258404763&web_id=1258404763')
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

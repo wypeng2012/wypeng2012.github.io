@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?533310469d712b44a97c2f699fcb1750"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>区块链大数计算之java的BigInteger类使用解析 | JUST DO IT | 52it.party</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="java,大数计算">
+    <meta name="description" content="引言区块链里面用的最多的就是计算，并且还是很大的数的计算。大家都知道java里面基本类型里面就long类型可以表示一个64位的大数字，其数值范围为：   long的最大值：9223372036854775807  long的最小值：-9223372036854775808  这个数，看起来很大了，但是对于区块链来说完全是不够的，大家可以看一下我之前的一篇文章：区块链开发以太坊ETH单位转换关系 这">
+<meta name="keywords" content="java,大数计算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="区块链大数计算之java的BigInteger类使用解析">
+<meta property="og:url" content="https://52it.party/2018/07/19/区块链大数计算之java的BigInteger类使用解析/index.html">
+<meta property="og:site_name" content="JUST DO IT">
+<meta property="og:description" content="引言区块链里面用的最多的就是计算，并且还是很大的数的计算。大家都知道java里面基本类型里面就long类型可以表示一个64位的大数字，其数值范围为：   long的最大值：9223372036854775807  long的最小值：-9223372036854775808  这个数，看起来很大了，但是对于区块链来说完全是不够的，大家可以看一下我之前的一篇文章：区块链开发以太坊ETH单位转换关系 这">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-19T11:41:07.977Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="区块链大数计算之java的BigInteger类使用解析">
+<meta name="twitter:description" content="引言区块链里面用的最多的就是计算，并且还是很大的数的计算。大家都知道java里面基本类型里面就long类型可以表示一个64位的大数字，其数值范围为：   long的最大值：9223372036854775807  long的最小值：-9223372036854775808  这个数，看起来很大了，但是对于区块链来说完全是不够的，大家可以看一下我之前的一篇文章：区块链开发以太坊ETH单位转换关系 这">
+    
+        <link rel="alternate" type="application/atom+xml" title="JUST DO IT" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Jerry Wang</h5>
+          <a href="mailto:wypeng2012@163.com" title="wypeng2012@163.com" class="mail">wypeng2012@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/wypeng2012" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/wypeng2010" target="_blank" >
+                <i class="icon icon-lg icon-pencil"></i>
+                CSDN
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">区块链大数计算之java的BigInteger类使用解析</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">区块链大数计算之java的BigInteger类使用解析</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-07-19T11:02:37.000Z" itemprop="datePublished" class="page-time">
+  2018-07-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/区块链/">区块链</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#引言"><span class="post-toc-number">1.</span> <span class="post-toc-text">引言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#常用构造方法"><span class="post-toc-number">2.</span> <span class="post-toc-text">常用构造方法</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#常用方法"><span class="post-toc-number">3.</span> <span class="post-toc-text">常用方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-求绝对值"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">1.求绝对值</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-加法"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2.加法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-比较大小"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3.比较大小</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-除法"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">4.除法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-转成double"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">5.转成double</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-转换为-float"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">6.转换为 float</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-转换为-int"><span class="post-toc-number">3.7.</span> <span class="post-toc-text">7.转换为 int</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-转换为-long"><span class="post-toc-number">3.8.</span> <span class="post-toc-text">7.转换为 long</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-乘法"><span class="post-toc-number">3.9.</span> <span class="post-toc-text">8.乘法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9-减法"><span class="post-toc-number">3.10.</span> <span class="post-toc-text">9.减法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-转成十进制字符串表示形式字符串"><span class="post-toc-number">3.11.</span> <span class="post-toc-text">10.转成十进制字符串表示形式字符串</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#11-转成2-8-10-16进制字符串表示形式字符串"><span class="post-toc-number">3.12.</span> <span class="post-toc-text">11.转成2,8,10,16进制字符串表示形式字符串</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-区块链大数计算之java的BigInteger类使用解析"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">区块链大数计算之java的BigInteger类使用解析</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-07-19 19:02:37" datetime="2018-07-19T11:02:37.000Z"  itemprop="datePublished">2018-07-19</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/区块链/">区块链</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>区块链里面用的最多的就是计算，并且还是很大的数的计算。大家都知道java里面基本类型里面就long类型可以表示一个64位的大数字，其数值范围为：</p>
+<blockquote>
+<p> long的最大值：9223372036854775807</p>
+<p> long的最小值：-9223372036854775808</p>
+</blockquote>
+<p>这个数，看起来很大了，但是对于区块链来说完全是不够的，大家可以看一下我之前的一篇文章：<a href="/2018/07/19/区块链开发之以太坊ETH单位转换关系/">区块链开发以太坊ETH单位转换关系</a></p>
+<p>这里边的数值都很大，做运算时，绝对不可能使用基本类型来做运算的。还好jdk里面已经内置了相关的类来解决这些问题，那就是BigInteger（主要做整数运算）和BigDecimal（主要做浮点运算），今天我们就来介绍一下BigInteger的用法（后边会写和BigDecimal的用法）：</p>
+<h1 id="常用构造方法"><a href="#常用构造方法" class="headerlink" title="常用构造方法"></a>常用构造方法</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BigInteger(String val)  <span class="comment">//将 BigInteger 的十进制字符串表示形式转换为 BigInteger。</span></span><br><span class="line">          </span><br><span class="line">BigInteger(String val, <span class="keyword">int</span> radix) <span class="comment">//将指定基数的 BigInteger 的字符串表示形式转换为 BigInteger。 radix只得是进制，比如2进制，就填写2,16进制，就填16</span></span><br></pre></td></tr></table></figure>
+<h1 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h1><h2 id="1-求绝对值"><a href="#1-求绝对值" class="headerlink" title="1.求绝对值"></a>1.求绝对值</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abs()<span class="comment">//返回其值是此 BigInteger 的绝对值的 BigInteger。</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-加法"><a href="#2-加法" class="headerlink" title="2.加法"></a>2.加法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add(BigInteger val) <span class="comment">//相当于做加法，返回其值为 (this + val) 的 BigInteger。</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-比较大小"><a href="#3-比较大小" class="headerlink" title="3.比较大小"></a>3.比较大小</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compareTo(BigInteger val)<span class="comment">//比较大小，大于返回1，等于返回0，小于返回-1</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-除法"><a href="#4-除法" class="headerlink" title="4.除法"></a>4.除法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">divide(BigInteger val)<span class="comment">//相当于做除法 返回其值为 (this / val) 的 BigInteger。</span></span><br></pre></td></tr></table></figure>
+<h2 id="5-转成double"><a href="#5-转成double" class="headerlink" title="5.转成double"></a>5.转成double</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">doubleValue()<span class="comment">//将此 BigInteger 转换为 double。如果此 BigInteger 的数量太大，不能表示为 double，则将其适当地转换为 Double.NEGATIVE_INFINITY 或 Double.POSITIVE_INFINITY。注意，即使在返回值是有限的情况下，此转换也可以丢失关于 BigInteger 值的精度的信息。</span></span><br></pre></td></tr></table></figure>
+<h2 id="6-转换为-float"><a href="#6-转换为-float" class="headerlink" title="6.转换为 float"></a>6.转换为 float</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">floatValue() <span class="comment">//将此 BigInteger 转换为 float。如果此 BigInteger 的数量太大，不能表示为 float，则将其适当地转换为 Float.NEGATIVE_INFINITY 或 Float.POSITIVE_INFINITY。注意，即使在返回值是有限的情况下，此转换也可以丢失关于 BigInteger 值的精度的信息。</span></span><br></pre></td></tr></table></figure>
+<h2 id="7-转换为-int"><a href="#7-转换为-int" class="headerlink" title="7.转换为 int"></a>7.转换为 int</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">intValue() <span class="comment">//将此 BigInteger 转换为 int。如果此 BigInteger 太长而不适合用 int 表示，则仅返回 32 位的低位字节。注意，此转换会丢失关于该 BigInteger 值的总大小的信息，并返回带有相反符号的结果</span></span><br></pre></td></tr></table></figure>
+<h2 id="7-转换为-long"><a href="#7-转换为-long" class="headerlink" title="7.转换为 long"></a>7.转换为 long</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">longValue() <span class="comment">//将此 BigInteger 转换为 long。如果此 BigInteger 太长而不适合用 long 表示，则仅返回 64 位的低位字节。注意，此转换会丢失关于该 BigInteger 值的总大小的信息，并返回带有相反符号的结果。</span></span><br></pre></td></tr></table></figure>
+<h2 id="8-乘法"><a href="#8-乘法" class="headerlink" title="8.乘法"></a>8.乘法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">multiply(BigInteger val) <span class="comment">//返回其值为 (this * val) 的 BigInteger。</span></span><br></pre></td></tr></table></figure>
+<h2 id="9-减法"><a href="#9-减法" class="headerlink" title="9.减法"></a>9.减法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">subtract(BigInteger val)<span class="comment">//返回其值为 (this - val) 的 BigInteger。</span></span><br></pre></td></tr></table></figure>
+<h2 id="10-转成十进制字符串表示形式字符串"><a href="#10-转成十进制字符串表示形式字符串" class="headerlink" title="10.转成十进制字符串表示形式字符串"></a>10.转成十进制字符串表示形式字符串</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">toString() <span class="comment">//返回此 BigInteger 的十进制字符串表示形式。</span></span><br></pre></td></tr></table></figure>
+<h2 id="11-转成2-8-10-16进制字符串表示形式字符串"><a href="#11-转成2-8-10-16进制字符串表示形式字符串" class="headerlink" title="11.转成2,8,10,16进制字符串表示形式字符串"></a>11.转成2,8,10,16进制字符串表示形式字符串</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">toString(<span class="keyword">int</span> radix)<span class="comment">//返回此 BigInteger 的给定基数的字符串表示形式。radix为进制数</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Tip:其他方法可以查看帮助文档</p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-07-19T11:41:07.977Z" itemprop="dateUpdated">2018-07-19 19:41:07</time>
+</span><br>
+
+
+        
+        版权所有，转载请注明出处：<a href="/2018/07/19/区块链大数计算之java的BigInteger类使用解析/" target="_blank" rel="external">https://52it.party/2018/07/19/区块链大数计算之java的BigInteger类使用解析/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://52it.party">
+            <img src="/img/avatar.jpg" alt="Jerry Wang">
+            Jerry Wang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数计算/">大数计算</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://52it.party/2018/07/19/区块链大数计算之java的BigInteger类使用解析/&title=《区块链大数计算之java的BigInteger类使用解析》 — JUST DO IT&pic=https://52it.party/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://52it.party/2018/07/19/区块链大数计算之java的BigInteger类使用解析/&title=《区块链大数计算之java的BigInteger类使用解析》 — JUST DO IT&source=一个爱好it的开源站点" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://52it.party/2018/07/19/区块链大数计算之java的BigInteger类使用解析/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《区块链大数计算之java的BigInteger类使用解析》 — JUST DO IT&url=https://52it.party/2018/07/19/区块链大数计算之java的BigInteger类使用解析/&via=https://52it.party" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://52it.party/2018/07/19/区块链大数计算之java的BigInteger类使用解析/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/07/19/区块链开发之eth转账所需的gas，gasprice，gaslimit介绍/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">区块链开发之eth转账所需的gas，gasprice，gaslimit介绍</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/07/19/区块链开发之以太坊ETH单位转换关系/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">区块链开发以太坊ETH单位转换关系</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "OSeFve2phrScTi5DslUdmkR7-gzGzoHsz",
+            appKey: "YeAn5rF0OVsDSmiuY3D9pqaI",
+            avatar: "wavatar",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        您的支持，是我不断前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/WeChatPay.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/WeChatPay.png" data-alipay="/img/AliPay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Jerry Wang &copy; 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://52it.party/2018/07/19/区块链大数计算之java的BigInteger类使用解析/&title=《区块链大数计算之java的BigInteger类使用解析》 — JUST DO IT&pic=https://52it.party/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://52it.party/2018/07/19/区块链大数计算之java的BigInteger类使用解析/&title=《区块链大数计算之java的BigInteger类使用解析》 — JUST DO IT&source=一个爱好it的开源站点" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://52it.party/2018/07/19/区块链大数计算之java的BigInteger类使用解析/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《区块链大数计算之java的BigInteger类使用解析》 — JUST DO IT&url=https://52it.party/2018/07/19/区块链大数计算之java的BigInteger类使用解析/&via=https://52it.party" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://52it.party/2018/07/19/区块链大数计算之java的BigInteger类使用解析/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://52it.party/2018/07/19/区块链大数计算之java的BigInteger类使用解析/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1258404763&web_id=1258404763')
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

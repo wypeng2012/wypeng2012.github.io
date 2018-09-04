@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?533310469d712b44a97c2f699fcb1750"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>小米刘海屏适配方案 | JUST DO IT | 52it.party</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="android刘海屏方案解决,android解决方案">
+    <meta name="description" content="背景1.目前已上市的小米 Notch 设备（俗称刘海屏手机）如下，其宽度、高度和形状均略有差异。    机型 model device 分辨率 Notch高度 Notch宽度 DPI     小米8 Xiaomi MI 8 dipper 1080*2248 89 560 440   小米8 SE Xiaomi MI 8 SE sirius 1080*2244 85 540 440   小米8 透明">
+<meta name="keywords" content="android刘海屏方案解决,android解决方案">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小米刘海屏适配方案">
+<meta property="og:url" content="https://52it.party/2018/07/16/小米刘海屏适配方案/index.html">
+<meta property="og:site_name" content="JUST DO IT">
+<meta property="og:description" content="背景1.目前已上市的小米 Notch 设备（俗称刘海屏手机）如下，其宽度、高度和形状均略有差异。    机型 model device 分辨率 Notch高度 Notch宽度 DPI     小米8 Xiaomi MI 8 dipper 1080*2248 89 560 440   小米8 SE Xiaomi MI 8 SE sirius 1080*2244 85 540 440   小米8 透明">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-16T06:44:32.073Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小米刘海屏适配方案">
+<meta name="twitter:description" content="背景1.目前已上市的小米 Notch 设备（俗称刘海屏手机）如下，其宽度、高度和形状均略有差异。    机型 model device 分辨率 Notch高度 Notch宽度 DPI     小米8 Xiaomi MI 8 dipper 1080*2248 89 560 440   小米8 SE Xiaomi MI 8 SE sirius 1080*2244 85 540 440   小米8 透明">
+    
+        <link rel="alternate" type="application/atom+xml" title="JUST DO IT" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Jerry Wang</h5>
+          <a href="mailto:wypeng2012@163.com" title="wypeng2012@163.com" class="mail">wypeng2012@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/wypeng2012" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/wypeng2010" target="_blank" >
+                <i class="icon icon-lg icon-pencil"></i>
+                CSDN
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">小米刘海屏适配方案</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">小米刘海屏适配方案</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-07-16T06:19:35.000Z" itemprop="datePublished" class="page-time">
+  2018-07-16
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/android刘海屏方案解决/">android刘海屏方案解决</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#背景"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#系统级适配规则"><span class="post-toc-number">2.</span> <span class="post-toc-text">系统级适配规则</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#开发者适配"><span class="post-toc-number">3.</span> <span class="post-toc-text">开发者适配</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#系统接口说明"><span class="post-toc-number">4.</span> <span class="post-toc-text">系统接口说明</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-如何判断设备为-Notch-机型"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">1.如何判断设备为 Notch 机型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-如何获取-Notch-凹口-刘海-的高度和宽度（截至2018-6-26）"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">2.如何获取 Notch / 凹口 / 刘海 的高度和宽度（截至2018.6.26）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-Application-级别的控制接口"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">3.Application 级别的控制接口</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-Window-级别的控制接口"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">4.Window 级别的控制接口</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-状态栏高度获取方法"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">5.状态栏高度获取方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#「隐藏屏幕刘海」适配"><span class="post-toc-number">4.6.</span> <span class="post-toc-text">「隐藏屏幕刘海」适配</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-小米刘海屏适配方案"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">小米刘海屏适配方案</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-07-16 14:19:35" datetime="2018-07-16T06:19:35.000Z"  itemprop="datePublished">2018-07-16</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/android刘海屏方案解决/">android刘海屏方案解决</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>1.目前已上市的小米 Notch 设备（俗称刘海屏手机）如下，其宽度、高度和形状均略有差异。</p>
+<table>
+<thead>
+<tr>
+<th>机型</th>
+<th>model</th>
+<th>device</th>
+<th>分辨率</th>
+<th>Notch高度</th>
+<th>Notch宽度</th>
+<th>DPI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>小米8</td>
+<td>Xiaomi MI 8</td>
+<td>dipper</td>
+<td>1080*2248</td>
+<td>89</td>
+<td>560</td>
+<td>440</td>
+</tr>
+<tr>
+<td>小米8 SE</td>
+<td>Xiaomi MI 8 SE</td>
+<td>sirius</td>
+<td>1080*2244</td>
+<td>85</td>
+<td>540</td>
+<td>440</td>
+</tr>
+<tr>
+<td>小米8 透明探索版</td>
+<td>Xiaomi MI8 Explorer Edition</td>
+<td>ursa</td>
+<td>1080*2248</td>
+<td>89</td>
+<td>560</td>
+<td>440</td>
+</tr>
+<tr>
+<td>红米6 Pro</td>
+<td>Xiaomi Redmi 6 Pro</td>
+<td>sakura</td>
+<td>1080*2280</td>
+<td>89</td>
+<td>352</td>
+<td>440</td>
+</tr>
+</tbody>
+</table>
+<p>注：以上设备，由于MIUI调整了DPI值，因此DP值与像素值的转换关系是 1dp = 2.75 px 。</p>
+<p>2..Android P 提供了 Notch / 刘海屏的标准适配接口</p>
+<p>MIUI 也将在 Android P 上采用标准接口，因此，下文提及的接口仅用于 Android O 上。关于 Android P 的接口说明，详见我的之前的文章：<a href="/2018/07/12/谷歌官方流海适配方案/">谷歌官方流海适配方案</a>。</p>
+<h1 id="系统级适配规则"><a href="#系统级适配规则" class="headerlink" title="系统级适配规则"></a>系统级适配规则</h1><p>Notch 机型在界面上会带来两个问题：</p>
+<ol>
+<li>顶部内容会被 Notch 遮挡</li>
+<li>如何处理耳朵区的显示区域</li>
+</ol>
+<p>为了保证绝大部分应用都能正常显示，同时尽可能利用屏幕的显示区域。MIUI System UI 制定了以下全局规则：</p>
+<ol>
+<li>status bar 略高于 Notch 高度，对于应用来说，相当于一个更高的 status bar。</li>
+<li>当应用显示 status bar 时（如微信首页），允许应用使用耳朵区（背后的逻辑是：因为 status bar 区域本身不可交互，且会显示信号、电池等信息，因此我们假定应用不会在该区域放置重要的内容和可交互的控件）。</li>
+<li>当应用不显示 status bar 时（如全屏游戏），不允许应用使用耳朵区，系统默认填黑。</li>
+<li>横屏时，默认均不允许使用耳朵区，系统默认填黑。</li>
+<li>不允许应用180度倒转显示。</li>
+</ol>
+<h1 id="开发者适配"><a href="#开发者适配" class="headerlink" title="开发者适配"></a>开发者适配</h1><p>系统规则只能解决最基础的可用性问题，在系统规则下，开发者仍需要检查以下内容：</p>
+<ol>
+<li>检查系统默认规则是否有可用性问题，考虑是否做针对性优化。</li>
+<li>检查 status bar 的显示策略。重新考虑是否隐藏 status bar</li>
+<li>尽量避免某些页面显示 status bar，某些页面又隐藏，否则会出现页面跳变的情况（应用的可用高度变了）。</li>
+<li>检查横屏的情况，确定是否需要利用横屏的Notch，若使用，需兼顾 Notch 出现在左边/右边的情况。</li>
+<li>检查是否写死了状态栏的高度值。Notch机器状态栏的值是变化的，建议改为读取系统的值（后有相关方法说明）。</li>
+<li>检查开启「隐藏屏幕刘海」后，应用是否显示异常（详见后文）。</li>
+<li>检查普通屏幕的显示，保证应用在普通屏幕和 Notch 屏幕下都能正常显示 。</li>
+</ol>
+<h1 id="系统接口说明"><a href="#系统接口说明" class="headerlink" title="系统接口说明"></a>系统接口说明</h1><h2 id="1-如何判断设备为-Notch-机型"><a href="#1-如何判断设备为-Notch-机型" class="headerlink" title="1.如何判断设备为 Notch 机型"></a>1.如何判断设备为 Notch 机型</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SystemProperties.getInt(<span class="string">"ro.miui.notch"</span>, <span class="number">0</span>) == <span class="number">1</span>;<span class="comment">//系统增加了 property ro.miui.notch，值为1时则是 Notch 屏手机。</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-如何获取-Notch-凹口-刘海-的高度和宽度（截至2018-6-26）"><a href="#2-如何获取-Notch-凹口-刘海-的高度和宽度（截至2018-6-26）" class="headerlink" title="2.如何获取 Notch / 凹口 / 刘海 的高度和宽度（截至2018.6.26）"></a>2.如何获取 Notch / 凹口 / 刘海 的高度和宽度（截至2018.6.26）</h2><p>MIUI 10 新增了获取刘海宽和高的方法，需升级至8.6.26开发版及以上版本。</p>
+<p>以下是获取当前设备刘海<strong>高度</strong>的方法:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> resourceId = context.getResources().getIdentifier(<span class="string">"notch_height"</span>, <span class="string">"dimen"</span>, <span class="string">"android"</span>);</span><br><span class="line"><span class="keyword">if</span> (resourceId &gt; <span class="number">0</span>) &#123;</span><br><span class="line">result = context.getResources().getDimensionPixelSize(resourceId);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>以下是获取当前设备刘海<strong>宽度</strong>的方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> resourceId = context.getResources().getIdentifier(<span class="string">"notch_width"</span>, <span class="string">"dimen"</span>, <span class="string">"android"</span>);</span><br><span class="line"><span class="keyword">if</span> (resourceId &gt; <span class="number">0</span>) &#123;</span><br><span class="line">result = context.getResources().getDimensionPixelSize(resourceId);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-Application-级别的控制接口"><a href="#3-Application-级别的控制接口" class="headerlink" title="3.Application 级别的控制接口"></a>3.Application 级别的控制接口</h2><p>如果开发者认为应用的所有页面统一处理就行，可以使用该接口。在 Application 下增加一个 meta-data，用以声明该应用是否使用耳朵区。示例如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta-data</span><br><span class="line"> android:name=<span class="string">"notch.config"</span></span><br><span class="line"> android:value=<span class="string">"portrait|landscape"</span>/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>其中，value 的取值可以是以下4种：</p>
+<blockquote>
+<p>“none” 横竖屏都不绘制耳朵区</p>
+<p>“portrait” 竖屏绘制到耳朵区</p>
+<p>“landscape” 横屏绘制到耳朵区</p>
+<p>“portrait|landscape” 横竖屏都绘制到耳朵区</p>
+</blockquote>
+<p>注：一旦开发者声明了meta-data，系统就会优先遵从开发者的声明。</p>
+<h2 id="4-Window-级别的控制接口"><a href="#4-Window-级别的控制接口" class="headerlink" title="4.Window 级别的控制接口"></a>4.Window 级别的控制接口</h2><p>如果开发者希望对特定 Window 作处理，可以使用该接口。 在 WindowManager.LayoutParams 增加 extraFlags 成员变量，用以声明该 window 是否使用耳朵区。</p>
+<p>其中，extraFlags 有以下变量：</p>
+<blockquote>
+<p>0x00000100 开启配置</p>
+<p>0x00000200 竖屏配置</p>
+<p>0x00000400 横屏配置</p>
+</blockquote>
+<p>组合后表示 Window 的配置，如：</p>
+<blockquote>
+<p>0x00000100 | 0x00000200 竖屏绘制到耳朵区</p>
+<p>0x00000100 | 0x00000400 横屏绘制到耳朵区</p>
+<p>0x00000100 | 0x00000200 | 0x00000400 横竖屏都绘制到耳朵区</p>
+</blockquote>
+<p>控制 extraFlags 时注意只控制这几位，不要影响其他位。可以用 Window 的 addExtraFlags 和 clearExtraFlags 来修改, 这两个方法是 MIUI 增加的方法，需要反射调用。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> flag = <span class="number">0x00000100</span> | <span class="number">0x00000200</span> | <span class="number">0x00000400</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    Method method = Window.class.getMethod(<span class="string">"addExtraFlags"</span>,</span><br><span class="line">            <span class="keyword">int</span>.class);</span><br><span class="line">    method.invoke(getWindow(), flag);</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    Log.i(TAG, <span class="string">"addExtraFlags not found."</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="5-状态栏高度获取方法"><a href="#5-状态栏高度获取方法" class="headerlink" title="5.状态栏高度获取方法"></a>5.状态栏高度获取方法</h2><p>由于 Notch 设备的状态栏高度与正常机器不一样，因此在需要使用状态栏高度时，不建议写死一个值，而应该改为读取系统的值。</p>
+<p>以下是获取当前设备状态栏高度的方法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> resourceId = context.getResources().getIdentifier(<span class="string">"status_bar_height"</span>, <span class="string">"dimen"</span>, <span class="string">"android"</span>);</span><br><span class="line"><span class="keyword">if</span> (resourceId &gt; <span class="number">0</span>) &#123;</span><br><span class="line">result = context.getResources().getDimensionPixelSize(resourceId);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="「隐藏屏幕刘海」适配"><a href="#「隐藏屏幕刘海」适配" class="headerlink" title="「隐藏屏幕刘海」适配"></a>「隐藏屏幕刘海」适配</h2><p>MIUI 针对 Notch 设备，有一个「隐藏屏幕刘海」的设置项（设置-全面屏-隐藏屏幕刘海），具体表现是：系统会强制盖黑状态栏（无视应用的Notch使用声明），视觉上达到隐藏刘海的效果。但会给某些应用带来适配问题（控件/内容遮挡或过于靠边等）。</p>
+<p>因此开发者在适配时，还需要检查开启「隐藏屏幕刘海」后，应用的页面是否显示正常。针对有问题的页面，我们建议：</p>
+<p>1.请通过以下方法获取系统状态栏高度，然后据此调整布局，而不是写死布局：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> resourceId = context.getResources().getIdentifier(<span class="string">"status_bar_height"</span>, <span class="string">"dimen"</span>, <span class="string">"android"</span>);</span><br><span class="line"><span class="keyword">if</span> (resourceId &gt; <span class="number">0</span>) &#123;</span><br><span class="line">	result = context.getResources().getDimensionPixelSize(resourceId);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.如有需要，可以通过查询以下 Global settings 来确定「隐藏屏幕刘海」是否开启了，然后再作针对性优化。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Settings.Global.getInt(mContext.getContentResolver(), <span class="string">"force_black"</span>, <span class="number">0</span>) == <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-07-16T06:44:32.073Z" itemprop="dateUpdated">2018-07-16 14:44:32</time>
+</span><br>
+
+
+        
+        版权所有，转载请注明出处：<a href="/2018/07/16/小米刘海屏适配方案/" target="_blank" rel="external">https://52it.party/2018/07/16/小米刘海屏适配方案/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://52it.party">
+            <img src="/img/avatar.jpg" alt="Jerry Wang">
+            Jerry Wang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android刘海屏方案解决/">android刘海屏方案解决</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android解决方案/">android解决方案</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://52it.party/2018/07/16/小米刘海屏适配方案/&title=《小米刘海屏适配方案》 — JUST DO IT&pic=https://52it.party/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://52it.party/2018/07/16/小米刘海屏适配方案/&title=《小米刘海屏适配方案》 — JUST DO IT&source=一个爱好it的开源站点" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://52it.party/2018/07/16/小米刘海屏适配方案/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《小米刘海屏适配方案》 — JUST DO IT&url=https://52it.party/2018/07/16/小米刘海屏适配方案/&via=https://52it.party" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://52it.party/2018/07/16/小米刘海屏适配方案/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/07/19/区块链开发之比特币btc单位转换关系/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">区块链开发比特币btc单位转换关系</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/07/16/华为刘海屏适配/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">华为刘海屏适配</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "OSeFve2phrScTi5DslUdmkR7-gzGzoHsz",
+            appKey: "YeAn5rF0OVsDSmiuY3D9pqaI",
+            avatar: "wavatar",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        您的支持，是我不断前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/WeChatPay.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/WeChatPay.png" data-alipay="/img/AliPay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Jerry Wang &copy; 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://52it.party/2018/07/16/小米刘海屏适配方案/&title=《小米刘海屏适配方案》 — JUST DO IT&pic=https://52it.party/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://52it.party/2018/07/16/小米刘海屏适配方案/&title=《小米刘海屏适配方案》 — JUST DO IT&source=一个爱好it的开源站点" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://52it.party/2018/07/16/小米刘海屏适配方案/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《小米刘海屏适配方案》 — JUST DO IT&url=https://52it.party/2018/07/16/小米刘海屏适配方案/&via=https://52it.party" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://52it.party/2018/07/16/小米刘海屏适配方案/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://52it.party/2018/07/16/小米刘海屏适配方案/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1258404763&web_id=1258404763')
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

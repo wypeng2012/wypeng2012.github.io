@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?533310469d712b44a97c2f699fcb1750"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>区块链开发之确定性算法bip32，bip39，bip44 | JUST DO IT | 52it.party</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="区块链">
+    <meta name="description" content="引言随着比特币区块链的发展，人们已经不满足于，只有一个账号的情况，有些人会有好几个账户，但是这就出现一个问题，我有几个账号，就要保存几个私钥，这就特别麻烦和不友好，所以，就出现了bip32确定性算法，该算法可以让你只有同一个种子，就可以生成无数个私钥和地址，这就大大方便了用户的使用。但是这个种子，也不较长，用户使用起来也比较繁琐，这就出现了bip39，它是使用助记词的方式，生成种子的，这样用户只需">
+<meta name="keywords" content="区块链">
+<meta property="og:type" content="article">
+<meta property="og:title" content="区块链开发之确定性算法bip32，bip39，bip44">
+<meta property="og:url" content="https://52it.party/2018/07/30/区块链开发之确定性算法bip32，bip39，bip44/index.html">
+<meta property="og:site_name" content="JUST DO IT">
+<meta property="og:description" content="引言随着比特币区块链的发展，人们已经不满足于，只有一个账号的情况，有些人会有好几个账户，但是这就出现一个问题，我有几个账号，就要保存几个私钥，这就特别麻烦和不友好，所以，就出现了bip32确定性算法，该算法可以让你只有同一个种子，就可以生成无数个私钥和地址，这就大大方便了用户的使用。但是这个种子，也不较长，用户使用起来也比较繁琐，这就出现了bip39，它是使用助记词的方式，生成种子的，这样用户只需">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-30T10:22:18.212Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="区块链开发之确定性算法bip32，bip39，bip44">
+<meta name="twitter:description" content="引言随着比特币区块链的发展，人们已经不满足于，只有一个账号的情况，有些人会有好几个账户，但是这就出现一个问题，我有几个账号，就要保存几个私钥，这就特别麻烦和不友好，所以，就出现了bip32确定性算法，该算法可以让你只有同一个种子，就可以生成无数个私钥和地址，这就大大方便了用户的使用。但是这个种子，也不较长，用户使用起来也比较繁琐，这就出现了bip39，它是使用助记词的方式，生成种子的，这样用户只需">
+    
+        <link rel="alternate" type="application/atom+xml" title="JUST DO IT" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu"  >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Jerry Wang</h5>
+          <a href="mailto:wypeng2012@163.com" title="wypeng2012@163.com" class="mail">wypeng2012@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/wypeng2012" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://blog.csdn.net/wypeng2010" target="_blank" >
+                <i class="icon icon-lg icon-pencil"></i>
+                CSDN
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">区块链开发之确定性算法bip32，bip39，bip44</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">区块链开发之确定性算法bip32，bip39，bip44</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-07-30T09:34:40.000Z" itemprop="datePublished" class="page-time">
+  2018-07-30
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/区块链/">区块链</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#引言"><span class="post-toc-number">1.</span> <span class="post-toc-text">引言</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#协议官方链接"><span class="post-toc-number">2.</span> <span class="post-toc-text">协议官方链接</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#BIP44简介"><span class="post-toc-number">3.</span> <span class="post-toc-text">BIP44简介</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#路径级别"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">路径级别</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Coin-type"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">Coin type</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Account"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">Account</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Change"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">Change</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#address-index"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">address_index</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#示例"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">示例</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-区块链开发之确定性算法bip32，bip39，bip44"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">区块链开发之确定性算法bip32，bip39，bip44</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-07-30 17:34:40" datetime="2018-07-30T09:34:40.000Z"  itemprop="datePublished">2018-07-30</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/区块链/">区块链</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>随着比特币区块链的发展，人们已经不满足于，只有一个账号的情况，有些人会有好几个账户，但是这就出现一个问题，我有几个账号，就要保存几个私钥，这就特别麻烦和不友好，所以，就出现了bip32确定性算法，该算法可以让你只有同一个种子，就可以生成无数个私钥和地址，这就大大方便了用户的使用。但是这个种子，也不较长，用户使用起来也比较繁琐，这就出现了bip39，它是使用助记词的方式，生成种子的，这样用户只需要记住，12个单词（3,6,9,12，15,18,21，24支持这些单词数，目前使用较广泛的是12和24），这就有大大提高了用户使用的便利性。又随着区块链发展，市面上出现了很多币种，之前的确定性算法只是针对比特币的，也就是说只支持一种币种，用户想用同一个种子，管理不同币种，这就促使了bip39协议的出现，它是基于bip32协议的，它给bip32的路径，赋予了不同的意义，很好的解决了多币种，多地址的问题。</p>
+<h1 id="协议官方链接"><a href="#协议官方链接" class="headerlink" title="协议官方链接"></a>协议官方链接</h1><p>如果想详细的了解这些协议，请查看官方文档（解析的最清楚）<br>big32：<a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" target="_blank" rel="noopener">https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki</a></p>
+<p>bip39：<a href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki" target="_blank" rel="noopener">https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki</a></p>
+<p>bip44：<a href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki" target="_blank" rel="noopener">https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki</a></p>
+<p>验证网站：<a href="https://iancoleman.io/bip39/" target="_blank" rel="noopener">https://iancoleman.io/bip39/</a></p>
+<h1 id="BIP44简介"><a href="#BIP44简介" class="headerlink" title="BIP44简介"></a>BIP44简介</h1><h2 id="路径级别"><a href="#路径级别" class="headerlink" title="路径级别"></a>路径级别</h2><p>bip44给bip32定义了5各级别</p>
+<blockquote>
+<p>m / purpose’ / coin_type’ / account’ / change / address_index</p>
+</blockquote>
+<p><strong>m是固定的</strong></p>
+<p><strong>Purpose也是固定的，值为44（或者 0x8000002C）</strong></p>
+<h2 id="Coin-type"><a href="#Coin-type" class="headerlink" title="Coin type"></a>Coin type</h2><p>这个代表的是币种，0代表比特币，1代表比特币测试链，60代表以太坊</p>
+<p>完整的币种列表地址：<a href="https://github.com/satoshilabs/slips/blob/master/slip-0044.md" target="_blank" rel="noopener">https://github.com/satoshilabs/slips/blob/master/slip-0044.md</a></p>
+<h2 id="Account"><a href="#Account" class="headerlink" title="Account"></a>Account</h2><p>代表这个币的账户索引，从0开始</p>
+<h2 id="Change"><a href="#Change" class="headerlink" title="Change"></a>Change</h2><p>常量0用于外部链，常量1用于内部链（也称为更改地址）。外部链用于在钱包外可见的地址（例如，用于接收付款）。内部链用于在钱包外部不可见的地址，用于返回交易变更。 <strong>(所以一般使用0)</strong></p>
+<h2 id="address-index"><a href="#address-index" class="headerlink" title="address_index"></a>address_index</h2><p>这就是地址索引，从0开始，代表生成第几个地址，<strong>并且官方建议，每个account下的address_index不要超过20</strong></p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><table>
+<thead>
+<tr>
+<th>coin</th>
+<th>account</th>
+<th>change</th>
+<th>address</th>
+<th>path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bitcoin</td>
+<td>first</td>
+<td>external</td>
+<td>first</td>
+<td>m / 44’ / 0’ / 0’ / 0 / 0</td>
+</tr>
+<tr>
+<td>Bitcoin</td>
+<td>first</td>
+<td>external</td>
+<td>second</td>
+<td>m / 44’ / 0’ / 0’ / 0 / 1</td>
+</tr>
+<tr>
+<td>Bitcoin</td>
+<td>first</td>
+<td>internal</td>
+<td>second</td>
+<td>m / 44’ / 0’ / 0’ / 1 / 1</td>
+</tr>
+<tr>
+<td>Bitcoin Testnet</td>
+<td>first</td>
+<td>external</td>
+<td>first</td>
+<td>m / 44’ / 1’ / 0’ / 0 / 0</td>
+</tr>
+<tr>
+<td>Bitcoin Testnet</td>
+<td>second</td>
+<td>external</td>
+<td>first</td>
+<td>m / 44’ / 1’ / 1’ / 0 / 0</td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-07-30T10:22:18.212Z" itemprop="dateUpdated">2018-07-30 18:22:18</time>
+</span><br>
+
+
+        
+        版权所有，转载请注明出处：<a href="/2018/07/30/区块链开发之确定性算法bip32，bip39，bip44/" target="_blank" rel="external">https://52it.party/2018/07/30/区块链开发之确定性算法bip32，bip39，bip44/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://52it.party">
+            <img src="/img/avatar.jpg" alt="Jerry Wang">
+            Jerry Wang
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/区块链/">区块链</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://52it.party/2018/07/30/区块链开发之确定性算法bip32，bip39，bip44/&title=《区块链开发之确定性算法bip32，bip39，bip44》 — JUST DO IT&pic=https://52it.party/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://52it.party/2018/07/30/区块链开发之确定性算法bip32，bip39，bip44/&title=《区块链开发之确定性算法bip32，bip39，bip44》 — JUST DO IT&source=一个爱好it的开源站点" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://52it.party/2018/07/30/区块链开发之确定性算法bip32，bip39，bip44/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《区块链开发之确定性算法bip32，bip39，bip44》 — JUST DO IT&url=https://52it.party/2018/07/30/区块链开发之确定性算法bip32，bip39，bip44/&via=https://52it.party" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://52it.party/2018/07/30/区块链开发之确定性算法bip32，bip39，bip44/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/07/30/区块链开发之生成12个助记词/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">区块链开发之生成12个助记词</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/07/27/BTC-ETH测试币领取地址，以及对应区块浏览查询地址/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">BTC,ETH测试币领取地址，以及对应区块浏览查询地址</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'false' == 'true',
+            verify: 'false' == 'true',
+            appId: "OSeFve2phrScTi5DslUdmkR7-gzGzoHsz",
+            appKey: "YeAn5rF0OVsDSmiuY3D9pqaI",
+            avatar: "wavatar",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        您的支持，是我不断前进的动力
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/WeChatPay.png" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/WeChatPay.png" data-alipay="/img/AliPay.png">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Jerry Wang &copy; 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://52it.party/2018/07/30/区块链开发之确定性算法bip32，bip39，bip44/&title=《区块链开发之确定性算法bip32，bip39，bip44》 — JUST DO IT&pic=https://52it.party/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://52it.party/2018/07/30/区块链开发之确定性算法bip32，bip39，bip44/&title=《区块链开发之确定性算法bip32，bip39，bip44》 — JUST DO IT&source=一个爱好it的开源站点" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://52it.party/2018/07/30/区块链开发之确定性算法bip32，bip39，bip44/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《区块链开发之确定性算法bip32，bip39，bip44》 — JUST DO IT&url=https://52it.party/2018/07/30/区块链开发之确定性算法bip32，bip39，bip44/&via=https://52it.party" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://52it.party/2018/07/30/区块链开发之确定性算法bip32，bip39，bip44/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://52it.party/2018/07/30/区块链开发之确定性算法bip32，bip39，bip44/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=1258404763&web_id=1258404763')
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
