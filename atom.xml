@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://52it.party/"/>
-  <updated>2018-12-06T06:25:10.684Z</updated>
+  <updated>2018-12-06T07:05:26.712Z</updated>
   <id>https://52it.party/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一个EOS的Android端实现库</title>
+    <link href="https://52it.party/2018/12/06/%E4%B8%80%E4%B8%AAEOS%E7%9A%84Android%E7%AB%AF%E5%AE%9E%E7%8E%B0%E5%BA%93/"/>
+    <id>https://52it.party/2018/12/06/一个EOS的Android端实现库/</id>
+    <published>2018-12-06T07:00:12.000Z</published>
+    <updated>2018-12-06T07:05:26.712Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;简介：&quot;&gt;&lt;a href=&quot;#简介：&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Android开源库" scheme="https://52it.party/categories/Android%E5%BC%80%E6%BA%90%E5%BA%93/"/>
+    
+    
+      <category term="Android开发" scheme="https://52it.party/tags/Android%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="Android开源库" scheme="https://52it.party/tags/Android%E5%BC%80%E6%BA%90%E5%BA%93/"/>
+    
+  </entry>
   
   <entry>
     <title>一个针对Android的轻量级的ETH库</title>
@@ -547,34 +575,6 @@
       <category term="区块链" scheme="https://52it.party/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     
       <category term="eth" scheme="https://52it.party/tags/eth/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>区块链大数计算之java的BigInteger类使用解析</title>
-    <link href="https://52it.party/2018/07/19/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%A4%A7%E6%95%B0%E8%AE%A1%E7%AE%97%E4%B9%8Bjava%E7%9A%84BigInteger%E7%B1%BB%E4%BD%BF%E7%94%A8%E8%A7%A3%E6%9E%90/"/>
-    <id>https://52it.party/2018/07/19/区块链大数计算之java的BigInteger类使用解析/</id>
-    <published>2018-07-19T11:02:37.000Z</published>
-    <updated>2018-07-19T11:41:07.977Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="区块链" scheme="https://52it.party/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
-    
-    
-      <category term="java" scheme="https://52it.party/tags/java/"/>
-    
-      <category term="大数计算" scheme="https://52it.party/tags/%E5%A4%A7%E6%95%B0%E8%AE%A1%E7%AE%97/"/>
     
   </entry>
   
