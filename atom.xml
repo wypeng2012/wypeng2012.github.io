@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://52it.party/"/>
-  <updated>2018-08-07T09:07:03.690Z</updated>
+  <updated>2018-12-06T03:44:20.012Z</updated>
   <id>https://52it.party/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Bip44确定性算法的android实现</title>
+    <link href="https://52it.party/2018/12/06/Bip44%E7%A1%AE%E5%AE%9A%E6%80%A7%E7%AE%97%E6%B3%95%E7%9A%84android%E5%AE%9E%E7%8E%B0/"/>
+    <id>https://52it.party/2018/12/06/Bip44确定性算法的android实现/</id>
+    <published>2018-12-06T03:24:17.000Z</published>
+    <updated>2018-12-06T03:44:20.012Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Android开源库" scheme="https://52it.party/categories/Android%E5%BC%80%E6%BA%90%E5%BA%93/"/>
+    
+    
+      <category term="Android开发" scheme="https://52it.party/tags/Android%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="Android开源库" scheme="https://52it.party/tags/Android%E5%BC%80%E6%BA%90%E5%BA%93/"/>
+    
+  </entry>
   
   <entry>
     <title>Android开发之限制EditText的长度（中英文或者其他国家文字混编）</title>
@@ -547,38 +575,6 @@
       <category term="eth" scheme="https://52it.party/tags/eth/"/>
     
       <category term="以太坊" scheme="https://52it.party/tags/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>区块链开发比特币btc单位转换关系</title>
-    <link href="https://52it.party/2018/07/19/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91%E4%B9%8B%E6%AF%94%E7%89%B9%E5%B8%81btc%E5%8D%95%E4%BD%8D%E8%BD%AC%E6%8D%A2%E5%85%B3%E7%B3%BB/"/>
-    <id>https://52it.party/2018/07/19/区块链开发之比特币btc单位转换关系/</id>
-    <published>2018-07-19T06:24:32.000Z</published>
-    <updated>2018-07-19T06:31:17.302Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;今天来说一下比特币BTC的单位之间的转换关系，比特币有5种计价单位，btc，cbtc，mbtc，ubtc/μbtc，satoshi,其中satoshi是最小的单位，也是一笔交易中真正使用到的计价单位、之间的转化关系如下：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;/blockqu
-        
-      
-    
-    </summary>
-    
-      <category term="区块链" scheme="https://52it.party/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
-    
-    
-      <category term="btc" scheme="https://52it.party/tags/btc/"/>
-    
-      <category term="比特币" scheme="https://52it.party/tags/%E6%AF%94%E7%89%B9%E5%B8%81/"/>
-    
-      <category term="bitcoin" scheme="https://52it.party/tags/bitcoin/"/>
     
   </entry>
   
