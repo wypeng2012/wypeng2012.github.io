@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://52it.party/"/>
-  <updated>2018-12-06T03:56:49.891Z</updated>
+  <updated>2018-12-06T06:25:10.684Z</updated>
   <id>https://52it.party/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一个针对Android的轻量级的ETH库</title>
+    <link href="https://52it.party/2018/12/06/%E4%B8%80%E4%B8%AA%E9%92%88%E5%AF%B9Android%E7%9A%84%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%9A%84ETH%E5%BA%93/"/>
+    <id>https://52it.party/2018/12/06/一个针对Android的轻量级的ETH库/</id>
+    <published>2018-12-06T06:17:07.000Z</published>
+    <updated>2018-12-06T06:25:10.684Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;简介：&quot;&gt;&lt;a href=&quot;#简介：&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Android开源库" scheme="https://52it.party/categories/Android%E5%BC%80%E6%BA%90%E5%BA%93/"/>
+    
+    
+      <category term="Android开发" scheme="https://52it.party/tags/Android%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="Android开源库" scheme="https://52it.party/tags/Android%E5%BC%80%E6%BA%90%E5%BA%93/"/>
+    
+  </entry>
   
   <entry>
     <title>Bip44确定性算法的android实现</title>
@@ -547,34 +575,6 @@
       <category term="java" scheme="https://52it.party/tags/java/"/>
     
       <category term="大数计算" scheme="https://52it.party/tags/%E5%A4%A7%E6%95%B0%E8%AE%A1%E7%AE%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>区块链开发以太坊ETH单位转换关系</title>
-    <link href="https://52it.party/2018/07/19/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91%E4%B9%8B%E4%BB%A5%E5%A4%AA%E5%9D%8AETH%E5%8D%95%E4%BD%8D%E8%BD%AC%E6%8D%A2%E5%85%B3%E7%B3%BB/"/>
-    <id>https://52it.party/2018/07/19/区块链开发之以太坊ETH单位转换关系/</id>
-    <published>2018-07-19T06:31:48.000Z</published>
-    <updated>2018-07-19T06:44:50.833Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;以太坊中的计价单位要比比特币的多一些，并且数值上也要大很多，超过了64位的无符号long的最大值，他们计价单位一共有，wei，kwei，mwei，gwei，szabo，finney，ether，kether，mether，gether这10种计价单位，他们之间的转换关系如下
-        
-      
-    
-    </summary>
-    
-      <category term="区块链" scheme="https://52it.party/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
-    
-    
-      <category term="eth" scheme="https://52it.party/tags/eth/"/>
-    
-      <category term="以太坊" scheme="https://52it.party/tags/%E4%BB%A5%E5%A4%AA%E5%9D%8A/"/>
     
   </entry>
   
