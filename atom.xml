@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://52it.party/"/>
-  <updated>2018-12-13T03:04:49.296Z</updated>
+  <updated>2018-12-13T03:26:52.981Z</updated>
   <id>https://52it.party/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一个轻量级的Java实现的ETH库</title>
+    <link href="https://52it.party/2018/12/13/%E4%B8%80%E4%B8%AA%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%9A%84Java%E5%AE%9E%E7%8E%B0%E7%9A%84ETH%E5%BA%93/"/>
+    <id>https://52it.party/2018/12/13/一个轻量级的Java实现的ETH库/</id>
+    <published>2018-12-13T03:23:30.000Z</published>
+    <updated>2018-12-13T03:26:52.981Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;简介：&quot;&gt;&lt;a href=&quot;#简介：&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Java开源库" scheme="https://52it.party/categories/Java%E5%BC%80%E6%BA%90%E5%BA%93/"/>
+    
+    
+      <category term="Android开发" scheme="https://52it.party/tags/Android%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="Android开源库" scheme="https://52it.party/tags/Android%E5%BC%80%E6%BA%90%E5%BA%93/"/>
+    
+  </entry>
   
   <entry>
     <title>Bip44确定性算法的Java实现库（Android和java平台，都可以使用）</title>
@@ -546,34 +574,6 @@
       <category term="java" scheme="https://52it.party/tags/java/"/>
     
       <category term="大数计算" scheme="https://52it.party/tags/%E5%A4%A7%E6%95%B0%E8%AE%A1%E7%AE%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java的random类的一个坑（集合乱序）</title>
-    <link href="https://52it.party/2018/07/20/java%E7%9A%84random%E7%B1%BB%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/"/>
-    <id>https://52it.party/2018/07/20/java的random类的一个坑/</id>
-    <published>2018-07-20T08:30:56.000Z</published>
-    <updated>2018-07-20T09:06:06.161Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;&lt;strong&gt;引言&lt;/strong&gt;&lt;br&gt;在最近的开发中，要实现一个把一个集合的数给弄成乱序的，脑子里边的第一个想法就是使用随机数，先新建一个集合，写个死循环，然后获取随机位置下标，然后判断新集合是否包含这个数，不包含就把这个数加入新集合，包含，就继续下次循环，一直到新
-        
-      
-    
-    </summary>
-    
-      <category term="问题解决" scheme="https://52it.party/categories/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
-    
-    
-      <category term="java" scheme="https://52it.party/tags/java/"/>
-    
-      <category term="问题解决" scheme="https://52it.party/tags/%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
     
   </entry>
   
