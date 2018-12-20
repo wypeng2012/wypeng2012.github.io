@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://52it.party/"/>
-  <updated>2018-12-13T03:26:52.981Z</updated>
+  <updated>2018-12-20T02:39:45.303Z</updated>
   <id>https://52it.party/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一个EOS的Java实现(Android平台也可使用)</title>
+    <link href="https://52it.party/2018/12/20/%E4%B8%80%E4%B8%AAEOS%E7%9A%84Java%E5%AE%9E%E7%8E%B0-Android%E5%B9%B3%E5%8F%B0%E4%B9%9F%E5%8F%AF%E4%BD%BF%E7%94%A8/"/>
+    <id>https://52it.party/2018/12/20/一个EOS的Java实现-Android平台也可使用/</id>
+    <published>2018-12-20T02:35:31.000Z</published>
+    <updated>2018-12-20T02:39:45.303Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;简介：&quot;&gt;&lt;a href=&quot;#简介：&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Android开源库" scheme="https://52it.party/categories/Android%E5%BC%80%E6%BA%90%E5%BA%93/"/>
+    
+    
+      <category term="Android开发" scheme="https://52it.party/tags/Android%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="Android开源库" scheme="https://52it.party/tags/Android%E5%BC%80%E6%BA%90%E5%BA%93/"/>
+    
+  </entry>
   
   <entry>
     <title>一个轻量级的Java实现的ETH库</title>
@@ -545,35 +573,6 @@
     
     
       <category term="区块链" scheme="https://52it.party/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>区块链大数计算之java的BigDecimal类使用解析</title>
-    <link href="https://52it.party/2018/07/24/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%A4%A7%E6%95%B0%E8%AE%A1%E7%AE%97%E4%B9%8Bjava%E7%9A%84BigDecimal%E7%B1%BB%E4%BD%BF%E7%94%A8%E8%A7%A3%E6%9E%90/"/>
-    <id>https://52it.party/2018/07/24/区块链大数计算之java的BigDecimal类使用解析/</id>
-    <published>2018-07-24T05:32:22.000Z</published>
-    <updated>2018-07-24T06:16:51.876Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;之前讲解了BigInteger类的使用，这个类是做大整数运算的，想做大的浮点数运算就不行了，所以就需要其它的类来解决浮点运算的问题，这个类就是BigDecimal。&lt;/p&gt;
-&lt;h1 id=&quot;BigDecimal介绍&quot;&gt;&lt;a href=&quot;#BigDecimal介绍&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="区块链" scheme="https://52it.party/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
-    
-    
-      <category term="java" scheme="https://52it.party/tags/java/"/>
-    
-      <category term="大数计算" scheme="https://52it.party/tags/%E5%A4%A7%E6%95%B0%E8%AE%A1%E7%AE%97/"/>
     
   </entry>
   
